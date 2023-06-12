@@ -1,0 +1,151 @@
+body {
+    margin: 0px;
+}
+.title{   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 110px;
+}
+.h1_title{ 
+    font-family: var(--fonte-titulo);
+    font-style: normal;
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 56px;
+    text-align: center;
+    color: #0DB04B;
+}
+.img_card{
+    object-fit: cover;
+    height: 300px;
+    width: 387px;
+    left: 0px;
+    top: 0px;
+    border-radius: [object Object]px;
+}
+.h3_destaque {
+    font-family: var(--fonte-titulo);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 42px;
+    text-align: justify;
+    color: #EC6608;
+}
+.paragrafo {
+    margin: 16px;
+    font-family: var(--fonte-titulo);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 19px;
+    text-align: justify;
+    color: #000000;
+    text-align: justify;
+}
+.section_global {
+    height: auto;
+    width: 100%;
+    justify-content: center;
+}
+.cards {
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    width: calc(100% / 3 - 90px);
+    margin: 18px;
+    padding: 0px;
+    border-radius: 10px 10px 10px 10px;
+    transition: all .5s ease;
+    z-index: 0;
+}
+
+.cards h3 {
+    padding: 0px 0px 0px 0px !important;
+}
+.cards img {
+    width: 100%;
+    height: auto;
+}
+
+.cards:hover {
+    transform: scale(1.1);
+    z-index: 1;
+}
+.div_master {
+    display: flex;
+    align-items: stretch;
+    padding: 10px;
+    text-align: center;
+    flex-wrap: nowrap;
+    width: calc(100% - 20px);
+    margin: auto;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Card destaques
+.title_categoria {
+    margin: 50px;
+    font-family: var(--fonte-titulo);
+    font-style: normal;
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 56px;
+    text-align: center;
+    color: #0DB04B;
+    
+}
+
+.div_categoria_master h3 {
+    font-family: var(--fonte-titulo);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: justify;
+    color: #EC6608;
+    margin-top: 25px;
+}
+
+.div_categoria_master {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 66px;
+    margin: 0px 10px;
+    padding: 10px;
+}
+.cards_categoria {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    transition: all .5s ease;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction:column;
+    width: 183px;
+    height: 183px; 
+}

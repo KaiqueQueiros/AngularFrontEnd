@@ -1,0 +1,11 @@
+<form class="form_global_newsletter" (ngSubmit)="createClient()">
+    <h1>NEWSLETTER</h1>
+    <label for="nome">
+      <input placeholder="Nome" type="text" name="nome" required [(ngModel)]="newClient.name">
+    </label>
+    <label for="e-mail">
+      <input placeholder="E-mail" type="text" name="E-mail" required [(ngModel)]="newClient.email">
+    </label>
+    <button type="submit">ASSINAR</button>
+  </form>
+  
