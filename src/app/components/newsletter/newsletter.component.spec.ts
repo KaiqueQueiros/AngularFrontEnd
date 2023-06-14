@@ -12,7 +12,7 @@ describe('NewsletterComponent', () => {
     });
     fixture = TestBed.createComponent(NewsletterComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture.detectChanges(); 
   });
 
   it('should create', () => {

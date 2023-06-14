@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-content',
@@ -6,43 +6,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./carrossel.component.scss']
 })
 export class ContentComponent implements OnInit {
-  private inactivityTimeout: ReturnType<typeof setTimeout> | null = null;
+  @ViewChild('carrosselPoints') carrosselPointsRef!: ElementRef;
+  @ViewChild('carrosselSlides') carrosselSlidesRef!: ElementRef;
+  private inactivityTimeout: any;
 
   ngOnInit() {
-    document.addEventListener('DOMContentLoaded', () => {
-      const carrosselPoints = document.querySelectorAll('.carrossel-points label');
-      const carrosselSlides = document.querySelector('.carrossel-slides') as HTMLElement;
+    const carrosselPoints = this.carrosselPointsRef.nativeElement.querySelectorAll('label');
+    const carrosselSlides = this.carrosselSlidesRef.nativeElement;
 
-      carrosselPoints.forEach((point, index) => {
-        point.addEventListener('click', () => {
-          clearTimeout(this.inactivityTimeout as ReturnType<typeof setTimeout>);
-          carrosselSlides.style.animation = 'none';
-          carrosselSlides.offsetHeight; // Forçar uma reflow para evitar problemas de animação
-          carrosselSlides.style.transform = `translateX(-${index * 25}%)`;
-          carrosselSlides.offsetHeight; // Forçar uma reflow para evitar problemas de animação
-          carrosselSlides.style.animation = 'carrossel 8s infinite';
-
-          carrosselPoints.forEach((point) => {
-            point.classList.remove('active');
-          });
-          point.classList.add('active');
-
-          this.startInactivityTimeout(carrosselSlides);
-        });
+    carrosselPoints.forEach((point: { addEventListener: (arg0: string, arg1: () => void) => void; classList: { add: (arg0: string) => void; }; }, index: number) => {
+      point.addEventListener('click', () => {
+        clearTimeout(this.inactivityTimeout);
+        this.animateSlides(index * -25);
+        point.classList.add('active');
+        this.startInactivityTimeout();
       });
-
-      this.startInactivityTimeout(carrosselSlides);
     });
+
+    this.startInactivityTimeout();
   }
 
-  private startInactivityTimeout(carrosselSlides: HTMLElement) {
-    clearTimeout(this.inactivityTimeout as ReturnType<typeof setTimeout>);
+  private startInactivityTimeout() {
+    clearTimeout(this.inactivityTimeout);
     this.inactivityTimeout = setTimeout(() => {
-      carrosselSlides.style.animation = 'none';
-      carrosselSlides.offsetHeight; // Forçar uma reflow para evitar problemas de animação
-      carrosselSlides.style.transform = 'translateX(-25%)'; // Ajuste para voltar para a primeira imagem
-      carrosselSlides.offsetHeight; // Forçar uma reflow para evitar problemas de animação
-      carrosselSlides.style.animation = 'carrossel 8s infinite';
-    }, 4000); // Defina o tempo de inatividade desejado em milissegundos
+      this.animateSlides(-25);
+    }, 4000);
+  }
+
+  private animateSlides(translateX: number) {
+    const carrosselSlides = this.carrosselSlidesRef.nativeElement;
+    carrosselSlides.style.transition = 'transform 0.5s';
+    carrosselSlides.style.transform = `translateX(${translateX}%)`;
+    
+    setTimeout(() => {
+      carrosselSlides.style.transition = 'none';
+      carrosselSlides.style.transform = `translateX(${translateX}%)`;
+    }, 500);
   }
 }

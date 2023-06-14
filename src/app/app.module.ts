@@ -10,7 +10,11 @@ import { DestaqueComponent } from './components/destaque/destaque.component';
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
 import { VideoComponent } from './components/video/video.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -22,11 +26,18 @@ import { FormsModule } from '@angular/forms';
     NewsletterComponent,
     VideoComponent,
     FooterComponent
+    
   ],
   imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule 
+    BrowserModule,
+    AppRoutingModule,   
+    FormsModule,
+    NoopAnimationsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

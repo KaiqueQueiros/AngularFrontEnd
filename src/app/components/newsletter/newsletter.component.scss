@@ -1,4 +1,4 @@
-.form_global_newsletter {
+.form {
     margin-top: 38px;
     height: 280px;
     background: #0DB04B;
@@ -11,7 +11,7 @@
     gap: 20px;
 }
 
-.form_global_newsletter h1 {
+.form h1 {
     margin-top: -40px;
     padding: 40px;
     font-family: var(--font-family-titulo);
@@ -25,7 +25,7 @@
     color: #FFFBFB;
 }
 
-.form_global_newsletter input {
+.form input {
     margin-top: -55px;
     border-radius: 10px;
     flex: 1;
@@ -39,7 +39,7 @@
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.form_global_newsletter button {
+.form button {
     margin-top: -55px;
     font-family: var(--fonte-titulo);
     border: none;

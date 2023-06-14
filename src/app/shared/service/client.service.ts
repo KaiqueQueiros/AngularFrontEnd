@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Client } from '../model/client.model';
@@ -8,10 +8,24 @@ import { Client } from '../model/client.model';
   providedIn: 'root'
 })
 export class ClientService {
+  apiUrl = 'http://localhost:8080/api/client';
+  httpOptions = {
+    headers: new HttpHeaders ({
+      'Content-Type' : 'application/json'
+    })
+    };
+  
 
-  constructor(private http: HttpClient) {}
-
-  createClient(client: Client): Observable<Client> {
-    return this.http.post<Client>('http://localhost:8080/client', client);
+  constructor(
+    private httpClient : HttpClient
+  ) {}
+  
+  public postClient(client : any) : Observable<Client> {
+    return this.httpClient.post<any>(this.apiUrl, client,this.httpOptions);
+    console.info()
   }
 }
+
+
+ 
+
