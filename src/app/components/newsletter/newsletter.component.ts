@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../shared/service/client.service';
 // import { Client } from '../../shared/model/client.model';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { ResourceLoader } from '@angular/compiler';
 
 @Component({
   selector: 'app-newsletter',
@@ -32,15 +33,13 @@ export class NewsletterComponent implements OnInit {
       const formData = this.formClient.value;      
       this.http.post('/api/client', formData)
         .subscribe(
-          (          response: any) => {
-            
+          (          response: any) => {         
             console.log('Assinatura de newsletter enviada com sucesso!', response);
-            alert("Cadastrado com sucesso!");
-            
+            alert("Cadastrado com sucesso!");        
               this.formClient.reset();
           },
-          (          error: any) => {
-
+          (error: any) => {
+            alert("Problema de conexão")
             console.error('Erro ao enviar a assinatura de newsletter:', error);
           }
         );

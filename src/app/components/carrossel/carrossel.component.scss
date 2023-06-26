@@ -1,7 +1,4 @@
-// .app-content {
-//     width: 100%;
-//     height: 150px;
-// }
+
 
 .carrossel {
     position: relative;
@@ -44,22 +41,17 @@
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background-color: #FFFFFF;
+    background-color: var(--cor-de-fundo);
     margin: 0 4px;
     cursor: pointer;
-    transition: background-color 2  s ease-in-out;
+    transition: background-color 4s ease-in-out;
 }
 
-// .carrossel-input:checked + .carrossel-points label {
-//     background-color: #cccccc;
-// }
-// .pause-animation {
-//     animation-play-state: paused;
-//   }
-  
-//   .restart-animation {
-//     animation: carrossel 8s infinite;
-//   }
+.restart-animation {
+    animation: carrossel 9s infinite;
+}
+
+
 
 @keyframes carrossel {
     0% {

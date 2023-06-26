@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-content',
@@ -9,38 +9,52 @@ export class ContentComponent implements OnInit {
   @ViewChild('carrosselPoints') carrosselPointsRef!: ElementRef;
   @ViewChild('carrosselSlides') carrosselSlidesRef!: ElementRef;
   private inactivityTimeout: any;
+  activeIndex: number = 0;
 
-  ngOnInit() {
-    const carrosselPoints = this.carrosselPointsRef.nativeElement.querySelectorAll('label');
-    const carrosselSlides = this.carrosselSlidesRef.nativeElement;
+  constructor(private renderer: Renderer2) {}
 
-    carrosselPoints.forEach((point: { addEventListener: (arg0: string, arg1: () => void) => void; classList: { add: (arg0: string) => void; }; }, index: number) => {
-      point.addEventListener('click', () => {
+  ngOnInit(): void {
+    const carrosselPoints = Array.from(this.carrosselPointsRef.nativeElement.querySelectorAll('label'));
+
+    carrosselPoints.forEach((point: any, index: number) => {
+      this.renderer.listen(point, 'click', () => {
         clearTimeout(this.inactivityTimeout);
         this.animateSlides(index * -25);
-        point.classList.add('active');
-        this.startInactivityTimeout();
+        this.setActivePoint(index);
+        this.inactivityTimeout = setTimeout(() => {
+          this.handleInactivity();
+        }, 5000);
       });
     });
 
-    this.startInactivityTimeout();
+    this.setActivePoint(0);
+    this.inactivityTimeout = window.setTimeout(() => {
+      this.handleInactivity();
+    }, 5000);
   }
 
-  private startInactivityTimeout() {
-    clearTimeout(this.inactivityTimeout);
-    this.inactivityTimeout = setTimeout(() => {
-      this.animateSlides(-25);
-    }, 4000);
-  }
-
-  private animateSlides(translateX: number) {
+  animateSlides(index: number): void {
     const carrosselSlides = this.carrosselSlidesRef.nativeElement;
-    carrosselSlides.style.transition = 'transform 0.5s';
-    carrosselSlides.style.transform = `translateX(${translateX}%)`;
-    
-    setTimeout(() => {
-      carrosselSlides.style.transition = 'none';
-      carrosselSlides.style.transform = `translateX(${translateX}%)`;
-    }, 500);
+    const slideWidth = 25;
+
+    carrosselSlides.style.transform = `translateX(${index * -slideWidth}%)`;
+  }
+
+  private handleInactivity(): void {
+    this.animateSlides(0);
+  }
+
+  private setActivePoint(index: number): void {
+    const carrosselPoints = Array.from(this.carrosselPointsRef.nativeElement.querySelectorAll('label'));
+
+    carrosselPoints.forEach((point: any, pointIndex: number) => {
+      if (pointIndex === index) {
+        point.classList.add('active');
+      } else {
+        point.classList.remove('active');
+      }
+    });
+
+    this.activeIndex = index;
   }
 }

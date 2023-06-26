@@ -1,12 +1,16 @@
 <header class="cabecalho">
-    <a class="Logo" href="header.component.html"> <img src="../../../assets/Logo.png" alt="Logo trevo"></a>  
-    <nav class="cabecalho_menu">
-        <a class ="cabecalho_menu_link" href="header.component.html">Início</a>
-        <a class ="cabecalho_menu_link" href="../destaque/destaque.component.html">Destaques</a>
-        <a class ="cabecalho_menu_link" href="../destaque/destaque.component.html">Categoria</a>
-        <a class ="cabecalho_menu_link" href="../newsletter/newsletter.component.html">Newslatter</a>
-        <a class ="cabecalho_menu_link" href="../video/video.component.html">Vídeos</a>
-        <a class ="cabecalho_menu_link" href="../footer/footer.component.html">Contato</a>
-    </nav>
-    <a class="whats" href="https://web.whatsapp.com/send/?phone=14997557273"> <img src="../../../assets/wpp.png" alt="Logo wpp"></a>
+    <a class="logo" href="/">
+        <img src="../../../assets/Logo.png" alt="Logo Trevo">
+    </a> 
+        <nav class="cabecalho_menu">
+            <a class="cabecalho_menu_link" href="/">Início</a>
+            <a class="cabecalho_menu_link" href="#form">Destaques</a>
+            <a class="cabecalho_menu_link" (click)="scrollToComponent('#card')">Categoria</a>
+            <a class="cabecalho_menu_link" href="#form">Newsletter</a>
+            <a class="cabecalho_menu_link" routerLink="/video">Vídeos</a>
+            <a class="cabecalho_menu_link" routerLink="/footer">Contato</a>
+        </nav>
+    <a class="wpp">
+        <img src="../../../assets/wpp.png" alt="Logo whatsapp link">
+    </a>
 </header>
